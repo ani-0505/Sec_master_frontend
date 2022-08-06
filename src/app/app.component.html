@@ -1,32 +1,38 @@
-    <mat-sidenav-container>
-        <mat-sidenav #sidenav role="navigation">
+    <mat-toolbar>
+        <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+            <mat-icon *ngIf="!sidenav.opened">
+                menu
+            </mat-icon>
+            <mat-icon *ngIf="sidenav.opened">
+                close
+            </mat-icon>
+        </button>
+        <img src="../assets/IVP_Logo.jpg" class="toolbar-logo" alt="">
+    </mat-toolbar>
+        
+        <mat-sidenav-container>
 
-        </mat-sidenav>
-        <mat-sidenav-content>
-            <mat-toolbar color="primary">
-                <div fxHide.gt-xs>
-                    <button mat-icon-button (click)="onToggleSideNav()">
-                        <mat-icon>Menu</mat-icon>
+            <mat-sidenav #sidenav="matSidenav">
+                <p class="sidenav-heading">Security Master</p>
+                <mat-divider></mat-divider>
+                <a routerLink="/viewer" class="sideNav-link">
+                    <button mat-button class="menu-button">
+                        <mat-icon>table_chart</mat-icon>
+                        <span>View Securities</span>
                     </button>
-                </div>
-                <div routerLink="/home">
-                    View Sec
-                </div>
-                <div fxFlex fxLayout="row" fxLayoutAlign="start" fxHide.xs >
-                    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-                        <li>
-                            <a routerLink="/view">View</a>
-                        </li>
-                        <li >
-                            <a routerLink="/update">update</a>
-                        </li>
+                </a>
+                <a routerLink="/uploader" class="sideNav-link">
+                    <button mat-button class="menu-button">
+                        <mat-icon>cloud_upload</mat-icon>
+                        <span>Upload Securities</span>
+                    </button>
+                </a>
+            </mat-sidenav>
 
-                    </ul>
-
+            <mat-sidenav-content>
+                <div class="content">
+                    <router-outlet></router-outlet>
                 </div>
-            </mat-toolbar>
-            <main>
-                <router-outlet></router-outlet>
-            </main>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+

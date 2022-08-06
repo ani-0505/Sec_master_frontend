@@ -1,0 +1,40 @@
+table {
+    width: 100%;
+}
+
+th {
+    font-size: 15px;
+    font-weight: 500;
+    background-color: #002b5c;
+    color: #fff;
+}
+
+.negative {
+    color: red;
+    font-weight: 500;
+}
+
+.positive {
+    color: rgb(30, 179, 30);
+    font-weight: 500;
+}
+
+.inactive {
+    background-color: #ddd;
+    cursor: not-allowed;
+    border: none;
+}
+
+.inactive-button {
+    display: none;
+}
+
+.action-button {
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.action-button:hover, .action-button:active {
+    transform: scale(1.05);
+}

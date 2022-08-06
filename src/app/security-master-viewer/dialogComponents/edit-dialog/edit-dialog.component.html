@@ -1,0 +1,78 @@
+<h3 mat-dialog-title>Edit Security</h3>
+<form [formGroup]="equityGroup" method="post" (ngSubmit)="equitySubmit()" >
+
+    <mat-dialog-content>
+            <div class="formGroup">
+
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Security Name</mat-label>
+                        <input matInput type="text" placeholder="Security Name" formControlName="security_name">
+                    </mat-form-field>
+                </div>
+                  
+                <div>
+                    <mat-form-field appearance="outline" id="description-field" >
+                        <mat-label>Security Description</mat-label>
+                        <input matInput type="text" placeholder="Security Description" value="Asian Paints Company Security" formControlName="security_description">
+                    </mat-form-field>
+                </div>
+                  
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Price Currency</mat-label>
+                        <mat-select formControlName="price_currency">
+                            <mat-option value="USD" selected>USD</mat-option>
+                            <mat-option value="INR">INR</mat-option>
+                            <mat-option value="EUR">EUR</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Total Shares Outstanding</mat-label>
+                        <input matInput type="number" placeholder="Total Shares Outstanding" value=300 formControlName="total_shares_outstanding">
+                    </mat-form-field>
+                </div>
+                  
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Open Price</mat-label>
+                        <input matInput type="number" placeholder="Open Price" value=220.50 formControlName="open_price">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Close Price</mat-label>
+                        <input matInput type="number" placeholder="Close Price" value=220.50 formControlName="close_price">
+                    </mat-form-field>
+                </div>
+                  
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Dividend Declare Date</mat-label>
+                        <input matInput type="date" placeholder="Dividend Declare Date" formControlName="declared_date">
+                    </mat-form-field>
+    
+                    <mat-form-field appearance="outline">
+                      <mat-label>PF Credit Rating</mat-label>
+                      <mat-select formControlName="pf_credit_rating">
+                        <mat-option value="USD" selected>USD</mat-option>
+                        <mat-option value="INR">INR</mat-option>
+                        <mat-option value="EUR">EUR</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                </div>
+                  
+
+            </div>
+        </mat-dialog-content>
+
+            <div class="formGroup">
+                <mat-dialog-actions align="end">
+                    <button mat-button mat-dialog-close color="primary">Cancel</button>
+                    <button type="submit" mat-raised-button mat-dialog-close color="primary">Edit</button>
+                </mat-dialog-actions>
+            </div>
+
+        </form>
+
+    <!-- <h3>{{equityGroup.controls['id'].value}}:{{equityGroup.controls['name'].value}}</h3> -->

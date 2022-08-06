@@ -8,6 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatDividerModule } from '@angular/material/divider';
+import { RoutingModule } from './routing/routing.module';
+import { SecurityMasterViewerModule } from './security-master-viewer/security-master-viewer.module';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatDividerModule,
+    RoutingModule,
+    SecurityMasterViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

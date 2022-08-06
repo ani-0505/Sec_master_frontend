@@ -1,0 +1,40 @@
+.example-card {
+    width: 100%;
+}
+
+.flex-div {
+    position: relative;
+}
+
+mat-card {
+    padding: 0;
+}
+
+mat-card-title {
+    font-size: 36px;
+    font-weight: 500;
+    padding: 10px;
+    padding-top: 0;
+}
+
+#inactive-securities mat-card-title {
+    color: red;
+}
+
+#active-securities mat-card-title {
+    color: rgb(30, 179, 30);
+}
+
+mat-card-subtitle {
+    margin-bottom: 10px;
+    font-size: 16px;
+    padding: 10px;
+    background-color: #eee;
+    color: #002b5c;
+}
+
+@media screen and (max-width: 800px){
+    #outer-grid {
+        zoom: 0.6;
+    }
+}
