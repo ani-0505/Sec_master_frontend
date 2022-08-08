@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tile',
@@ -7,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TileComponent implements OnInit {
 
+  @Input('active') numberOfActive! : string;
+  @Input('inactive') numberOfInactive! : string;
+
   constructor() { }
+
+  total(a:string, b:string){
+    return typeof(parseInt(a)+parseInt(b)) == "number" ? parseInt(a)+parseInt(b) : 0;
+  }
 
   ngOnInit(): void {
   }

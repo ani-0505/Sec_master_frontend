@@ -19,6 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import { MatSelectModule } from '@angular/material/select';
+import { EditBondsDialogComponent } from './dialogComponents/edit-bonds-dialog/edit-bonds-dialog.component';
+import { DeleteBondsDialogComponent } from './dialogComponents/delete-bonds-dialog/delete-bonds-dialog.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { MatSelectModule } from '@angular/material/select';
     TileComponent,
     TableComponent,
     DeleteDialogComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    EditBondsDialogComponent,
+    DeleteBondsDialogComponent
   ],
   entryComponents: [
     DeleteDialogComponent

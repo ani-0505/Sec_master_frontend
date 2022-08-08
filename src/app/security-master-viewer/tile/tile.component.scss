@@ -25,6 +25,10 @@ mat-card-title {
     color: rgb(30, 179, 30);
 }
 
+#all-securities mat-card-title {
+    color: #002b5c;
+}
+
 mat-card-subtitle {
     margin-bottom: 10px;
     font-size: 16px;
@@ -35,6 +39,6 @@ mat-card-subtitle {
 
 @media screen and (max-width: 800px){
     #outer-grid {
-        zoom: 0.6;
+        zoom: 0.5;
     }
 }

@@ -1,23 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../dialogComponents/delete-dialog/delete-dialog.component';
 import { EditDialogComponent } from '../dialogComponents/edit-dialog/edit-dialog.component';
-import { Equities } from '../interfaces/Equities_Table';
-
-
-function getFormattedDate(date:Date) {
-  let year = date.getFullYear();
-  let month = (1 + date.getMonth()).toString().padStart(2, '0');
-  let day = date.getDate().toString().padStart(2, '0');
-
-  return month + '/' + day + '/' + year;
-}
-
-const ELEMENT_DATA: Equities[] = [
-  {ID: 12, Name: 'Asian Paints', Description: 'Some Description', Open_Price: 123, Close_Price: 124, Dividend_Declare_Date: getFormattedDate(new Date("05/25/2005")), Is_Active: true, Action: ''},
-  {ID: 11, Name: 'Hero Cycles', Description: 'Some Description', Open_Price: -100, Close_Price: 900, Dividend_Declare_Date: getFormattedDate(new Date("12/12/2022")), Is_Active: true, Action: ''},
-  {ID: 10, Name: 'Asian Paints', Description: 'Some Description', Open_Price: 123, Close_Price: -100, Dividend_Declare_Date: getFormattedDate(new Date("05/25/2005")), Is_Active: false, Action: ''},
-];
+import { Equities } from '../../../models/Equities_Table';
+import { EquitiesService } from '../../../shared/services/http/equities.service';
+import { BondsService } from 'src/shared/services/http/bonds.service';
+import { Bonds } from 'src/models/Bonds_Table';
+import { EditBondsDialogComponent } from '../dialogComponents/edit-bonds-dialog/edit-bonds-dialog.component';
+import { DeleteBondsDialogComponent } from '../dialogComponents/delete-bonds-dialog/delete-bonds-dialog.component';
 
 @Component({
   selector: 'app-table',
@@ -28,22 +18,51 @@ const ELEMENT_DATA: Equities[] = [
 export class TableComponent implements OnInit {
 
   displayedColumns: string[] = ['Name', 'Description', 'Open_Price', 'Close_Price', 'Dividend_Declare_Date', 'Action'];
-  dataSource = ELEMENT_DATA;
+  displayedColumnsBonds: string[] = ['Name', 'Description', 'Coupon', 'Maturity', 'Credit_Rating', 'Ask_Price', 'Bid_Price', 'Action'];
 
-  constructor(public dialog: MatDialog) { }
+  EquityArray : any = []; 
+  BondsArray: any = []; 
+  
+  @Input('security') security!: string
+  
+  constructor(public dialog: MatDialog, private equitiesService: EquitiesService, private bondsService: BondsService) { }
 
-  openEdit(element:Equities) {
-    this.dialog.open(EditDialogComponent, {width: '50%', data: {eq: element}});
+  openEditEquities(element:Equities) {
+    this.dialog.open(EditDialogComponent, {width: '70%', data: {eq: element}});
   }
 
-  openDelete(element: Equities) {
-    let deleteRef = this.dialog.open(DeleteDialogComponent, {data: {Security_Name: element.Name}});
-    // deleteRef.afterClosed().subscribe(result => {
-    //   alert("Result: " + result);
-    // })
+  openDeleteEquities(element: Equities) {
+    this.dialog.open(DeleteDialogComponent, {data: {eq: element}});
+  }
+
+  openEditBonds(element:Bonds) {
+    this.dialog.open(EditBondsDialogComponent, {width: '70%', data: {eq: element}});
+  }
+
+  openDeleteBonds(element: Bonds) {
+    this.dialog.open(DeleteBondsDialogComponent, {data: {eq: element}});
+  }
+
+  getFormattedDate(date:string) {
+    let date1 = new Date(date)
+    let year = date1.getFullYear();
+    let month = (1 + date1.getMonth()).toString().padStart(2, '0');
+    let day = date1.getDate().toString().padStart(2, '0');
+  
+    return month + '/' + day + '/' + year;
   }
 
   ngOnInit(): void {
+    this.equitiesService.getEquities().subscribe(result=>{this.EquityArray = result});
+
+    this.bondsService.getBonds().subscribe(result => {this.BondsArray = result});
   }
 
+  updateEquitiesList(equities: Equities[]){
+    this.EquityArray = equities;
+  }
+  updateBondsList(bonds: Bonds[]){
+    this.BondsArray = bonds;
+  }
+  
 }

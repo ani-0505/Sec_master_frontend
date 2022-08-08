@@ -1,8 +1,8 @@
-<h3 mat-dialog-title>Edit Security - {{data.eq.securityName}}</h3>
+<h3 mat-dialog-title>Edit Bond - {{data.eq.securityName}}</h3>
 
-<div *ngIf="!equityGroup.valid" class="error">Numeric Fields Must be Positive</div>
+<div *ngIf="!bondsGroup.valid" class="error">Numeric Fields Must be Positive</div>
 
-<form [formGroup]="equityGroup" method="post" (ngSubmit)="editEquity(equityGroup.value)" >
+<form [formGroup]="bondsGroup" method="post" (ngSubmit)="editBond(bondsGroup.value)" >
 
     <mat-dialog-content>
             <div class="formGroup">
@@ -26,39 +26,47 @@
                 </div>
                   
                 <div>
+
                     <mat-form-field appearance="outline">
-                        <mat-label>Price Currency</mat-label>
-                        <mat-select [(ngModel)]="data.eq.priceCurrency" formControlName="priceCurrency" (change)=Currency.update($event)>
-                            <mat-option *ngFor="let currency of Currency.currencies" [value]="currency">
-                            {{currency}}
-                        </mat-option>
+                        <mat-label>Coupon Rate</mat-label>
+                        <input [(ngModel)]="data.eq.couponRate" matInput type="number" placeholder="Coupon Rate" formControlName="couponRate">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Is Callable?</mat-label>
+                        <mat-select [(ngModel)]="data.eq.isCallable" formControlName="isCallable">
+                          <mat-option [value]=true>YES</mat-option>
+                          <mat-option [value]=false>NO</mat-option>
                         </mat-select>
+                      </mat-form-field>
+                    
+                </div>
+                  
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Maturity Date</mat-label>
+                        <input [ngModel]="getDateFromString(data.eq.maturityDate)" class="disabledInput" matInput type="date" placeholder="Maturity Date" formControlName="maturityDate">
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
-                        <mat-label>Total Shares Outstanding</mat-label>
-                        <input [(ngModel)]="data.eq.totalSharesOutstanding" matInput type="number" placeholder="Total Shares Outstanding" formControlName="totalSharesOutstanding">
+                        <mat-label>Penultimate Coupon Date</mat-label>
+                        <input [ngModel]="getDateFromString(data.eq.penultimateCouponDate)" matInput type="date" placeholder="Penultimate Coupon Date" formControlName="penultimateCouponDate">
                     </mat-form-field>
                 </div>
                   
                 <div>
                     <mat-form-field appearance="outline">
-                        <mat-label>Open Price</mat-label>
-                        <input [(ngModel)]="data.eq.openPrice" matInput type="number" placeholder="Open Price" formControlName="openPrice">
+                        <mat-label>Ask Price</mat-label>
+                        <input [(ngModel)]="data.eq.askPrice" matInput type="number" placeholder="Ask Price" formControlName="askPrice">
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
-                        <mat-label>Close Price</mat-label>
-                        <input [(ngModel)]="data.eq.closePrice" matInput type="number" placeholder="Close Price" formControlName="closePrice">
+                        <mat-label>Bid Price</mat-label>
+                        <input [(ngModel)]="data.eq.bidPrice" matInput type="number" placeholder="Bid Price" formControlName="bidPrice">
                     </mat-form-field>
                 </div>
-                  
-                <div>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Dividend Declare Date</mat-label>
-                        <input [ngModel]="getDateFromString(data.eq.declaredDate)" matInput type="date" placeholder="Dividend Declare Date" formControlName="declaredDate">
-                    </mat-form-field>
     
+                <div>
                     <mat-form-field appearance="outline">
                       <mat-label>PF Credit Rating</mat-label>
                       <mat-select [(ngModel)]="data.eq.pfCreditRating" formControlName="pfCreditRating" (change)=CreditRating.update($event)>
@@ -76,7 +84,7 @@
             <div class="formGroup">
                 <mat-dialog-actions align="end">
                     <button mat-button mat-dialog-close color="primary">Cancel</button>
-                    <button type="submit" [disabled]="!(equityGroup.dirty && equityGroup.valid)" mat-raised-button mat-dialog-close color="primary" >Edit</button>
+                    <button type="submit" [disabled]="!(bondsGroup.dirty && bondsGroup.valid)" mat-raised-button mat-dialog-close color="primary" >Edit</button>
                 </mat-dialog-actions>
             </div>
 
