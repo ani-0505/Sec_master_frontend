@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatTabsModule } from '@angular/material/tabs';
 import { UploaderComponent } from './uploader/uploader.component';
+import { MatButtonModule } from '@angular/material/button';
+
 
 
 
@@ -9,7 +12,9 @@ import { UploaderComponent } from './uploader/uploader.component';
     UploaderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatTabsModule,
+    MatButtonModule
   ]
 })
 export class SecurityMasterUploaderModule { }

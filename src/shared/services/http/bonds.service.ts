@@ -16,10 +16,12 @@ export class BondsService {
     }
 
     public updateBonds(bond: any) : Observable<Bonds[]> {
+      alert("Security Updated Successfully")
       return this.http.put<Bonds[]>(`${environment.apiUrl}/${this.url}/${bond.securityId}`, bond)
     }
   
     public deleteBonds(bond: any) : Observable<Bonds[]> {
+      alert("Security Deleted Successfully")
       return this.http.delete<Bonds[]>(`${environment.apiUrl}/${this.url}/${bond.securityId}`)
     }
     

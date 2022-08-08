@@ -19,10 +19,12 @@ export class EquitiesService {
   }
 
   public updateEquities(equity: any) : Observable<Equities[]> {
+    alert("Security Updated Successfully")
     return this.http.put<Equities[]>(`${environment.apiUrl}/${this.url}/${equity.securityId}`, equity)
   }
 
   public deleteEquities(equity: any) : Observable<Equities[]> {
+    alert("Security Deleted Successfully")
     return this.http.delete<Equities[]>(`${environment.apiUrl}/${this.url}/${equity.securityId}`)
   }
 }

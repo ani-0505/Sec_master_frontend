@@ -13,7 +13,8 @@ export class TileComponent implements OnInit {
   constructor() { }
 
   total(a:string, b:string){
-    return typeof(parseInt(a)+parseInt(b)) == "number" ? parseInt(a)+parseInt(b) : 0;
+    let result = parseInt(a)+parseInt(b)
+    return typeof(result) == "number" ? result : '';
   }
 
   ngOnInit(): void {
